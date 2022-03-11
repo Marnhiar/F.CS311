@@ -99,16 +99,22 @@ public class List<T> {
 	}
 	
 	public static void main(String args[]) {
-		List<String> list = new List<>();
-		list.add(0, "S");
+		List<Integer> list = new List<>();
+		list.add(0, 1);
 		Scanner sc = new Scanner(System.in);
+		System.out.println((Object)list.get(0).getClass().getSimpleName() + " List");
 		System.out.println("add \"Index\" \"Object\", remove \"Index\", get \"Index\", size, print, end");
 		String cmd = sc.nextLine();
 		
 		while (cmd != "end") {
 			switch(cmd.split(" ")[0]) {
 			case "add":
-				list.add(Integer.parseInt(cmd.split(" ")[1]), cmd.split(" ")[2]);
+				try {
+					list.add(Integer.parseInt(cmd.split(" ")[1]), Integer.parseInt(cmd.split(" ")[2]));
+				}
+				catch (Exception e) {
+					System.out.println("Wrong input");
+				}
 				break;
 			case "remove":
 				list.remove(Integer.parseInt(cmd.split(" ")[1]));
