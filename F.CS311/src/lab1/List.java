@@ -2,12 +2,12 @@ package lab1;
 
 import java.util.Scanner;
 
-public class List {
-	private Object[] elements;
+public class List<T> {
+	private T[] elements;
 	private int size = 0;
 	
 	public List(int capacity) {
-		elements = new Object[capacity];
+		elements = (T[]) new Object[capacity];
 	}
 	
 	public List() {
@@ -22,9 +22,9 @@ public class List {
 		return size == 0 ? true:false;
 	}
 
-	public void add(int index, Object element) {
+	public void add(int index, T element) {
 		if(size == elements.length)
-			elements = changeArrayLength(elements, 2 * size);
+			elements = (T[]) changeArrayLength(elements, 2 * size);
 		
 		if(index > size)
 			index = size;
@@ -36,8 +36,8 @@ public class List {
 		size++;
 	}
 	
-	private Object[] changeArrayLength(Object[] oldArray, int size) {
-		Object[] newArray = new Object[size];
+	private T[] changeArrayLength(T[] oldArray, int size) {
+		T[] newArray = (T[]) new Object[size];
 		
 		for (int i=0; i<size; i++) {
 			newArray[i] = oldArray[i];
@@ -46,7 +46,7 @@ public class List {
 		return newArray;
 	}
 
-	public Object get(int index) {
+	public T get(int index) {
 		try {
 			checkIndex(index);
 		}
@@ -99,7 +99,7 @@ public class List {
 	}
 	
 	public static void main(String args[]) {
-		List list = new List();
+		List<String> list = new List<>();
 		list.add(0, "S");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("add \"Index\" \"Object\", remove \"Index\", get \"Index\", size, print, end");
